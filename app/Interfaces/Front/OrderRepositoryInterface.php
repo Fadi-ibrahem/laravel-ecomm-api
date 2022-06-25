@@ -2,15 +2,17 @@
 
 namespace App\Interfaces\Front;
 
+use App\Models\Order;
+
 interface OrderRepositoryInterface
 {
     public function index();
 
-    public function create();
+    public function create(Array $data);
 
-    public function update();
+    public function update(Order $order, Array $data);
 
-    public function delete();
+    public function delete(Order $order);
 
-    public function show();
+    public function show(Order $order);
 }

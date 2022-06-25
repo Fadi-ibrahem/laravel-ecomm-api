@@ -2,31 +2,33 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\Front\CouponRepository;
-use App\Interfaces\Front\CancellationRepositoryInterface;
-use App\Interfaces\Front\CategoryRepositoryInterface;
-use App\Interfaces\Front\ColorRepositoryInterface;
-use App\Interfaces\Front\CouponRepositoryInterface;
-use App\Interfaces\Front\FeedbackRepositoryInterface;
-use App\Interfaces\Front\OrderRepositoryInterface;
-use App\Interfaces\Front\ProductRepositoryInterface;
-use App\Interfaces\Front\ShipperRepositoryInterface;
-use App\Interfaces\Front\SizeRepositoryInterface;
-use App\Interfaces\Front\UserCustomerRepositoryInterface;
-use App\Interfaces\Front\UserRepositoryInterface;
-use App\Interfaces\Front\UserSupplierRepositoryInterface;
-use App\Repositories\Front\CancellationRepository;
-use App\Repositories\Front\CategoryRepository;
+use Illuminate\Support\ServiceProvider;
+use App\Repositories\Front\SizeRepository;
+use App\Repositories\Front\UserRepository;
 use App\Repositories\Front\ColorRepository;
-use App\Repositories\Front\FeedbackRepository;
 use App\Repositories\Front\OrderRepository;
+use App\Repositories\Front\CouponRepository;
 use App\Repositories\Front\ProductRepository;
 use App\Repositories\Front\ShipperRepository;
-use App\Repositories\Front\SizeRepository;
+use App\Repositories\Front\CategoryRepository;
+use App\Repositories\Front\FeedbackRepository;
+use App\Interfaces\Front\SizeRepositoryInterface;
+use App\Interfaces\Front\UserRepositoryInterface;
+use App\Interfaces\Front\ColorRepositoryInterface;
+use App\Interfaces\Front\OrderRepositoryInterface;
+use App\Interfaces\Front\PhoneRepositoryInterface;
+use App\Repositories\Front\CancellationRepository;
 use App\Repositories\Front\UserCustomerRepository;
-use App\Repositories\Front\UserRepository;
 use App\Repositories\Front\UserSupplierRepository;
-use Illuminate\Support\ServiceProvider;
+use App\Interfaces\Front\CouponRepositoryInterface;
+use App\Interfaces\Front\ProductRepositoryInterface;
+use App\Interfaces\Front\ShipperRepositoryInterface;
+use App\Interfaces\Front\CategoryRepositoryInterface;
+use App\Interfaces\Front\FeedbackRepositoryInterface;
+use App\Interfaces\Front\CancellationRepositoryInterface;
+use App\Interfaces\Front\UserCustomerRepositoryInterface;
+use App\Interfaces\Front\UserSupplierRepositoryInterface;
+use App\Repositories\Front\PhoneRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -49,6 +51,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->bind(ColorRepositoryInterface::class, ColorRepository::class);
         $this->app->bind(SizeRepositoryInterface::class, SizeRepository::class);
+        $this->app->bind(PhoneRepositoryInterface::class, PhoneRepository::class);
     }
 
     /**

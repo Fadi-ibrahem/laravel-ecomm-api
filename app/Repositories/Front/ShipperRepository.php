@@ -2,33 +2,51 @@
 
 namespace App\Repositories\Front;
 
+use App\Filters\Shipper\ShipperEmailFilter;
+use App\Filters\Shipper\ShipperNameFilter;
+use App\Filters\Shipper\ShipperRegistrationDateFilter;
+use App\Filters\Shipper\ShipperStreetFilter;
+use App\Filters\Shipper\ShipperZoneFilter;
+use Illuminate\Pipeline\Pipeline;
 use App\Interfaces\Front\ShipperRepositoryInterface;
+use App\Models\Shipper;
 
 class ShipperRepository implements ShipperRepositoryInterface
 {
     public function index()
     {
-        // TODO: Implement index() method.
+        $products = app(Pipeline::class)
+            ->send(Shipper::query())
+            ->through([
+                ShipperEmailFilter::class,
+                ShipperNameFilter::class,
+                ShipperRegistrationDateFilter::class,
+                ShipperStreetFilter::class,
+                ShipperZoneFilter::class,
+            ])
+            ->thenReturn()
+            ->paginate(12);
+
+        return $products;
     }
 
-    public function create()
+    public function create(Array $data)
     {
-        // TODO: Implement create() method.
+        Shipper::create($data);
     }
 
-    public function update()
+    public function update(Shipper $shipper, Array $data)
     {
-        // TODO: Implement update() method.
+        $shipper->update($data);
     }
 
-    public function delete()
+    public function delete(Shipper $shipper)
     {
-        // TODO: Implement delete() method.
+        $shipper->delete();
     }
 
-    public function show()
+    public function show(Shipper $shipper)
     {
-        // TODO: Implement show() method.
+        return $shipper;
     }
-
 }

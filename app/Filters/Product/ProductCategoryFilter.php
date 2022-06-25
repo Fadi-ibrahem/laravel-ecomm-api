@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filters\Front;
+namespace App\Filters\Product;
 
-use App\Interfaces\Front\FilterInterface;
+use App\Interfaces\FilterInterface;
 use Closure;
 
 class ProductCategoryFilter implements FilterInterface

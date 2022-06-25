@@ -22,6 +22,7 @@ class CreateUserCustomersTable extends Migration
             $table->string('phone');
             $table->string('zone');
             $table->string('street');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

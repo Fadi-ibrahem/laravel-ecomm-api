@@ -2,33 +2,48 @@
 
 namespace App\Repositories\Front;
 
+use App\Models\Feedback;
+use Illuminate\Pipeline\Pipeline;
+use App\Filters\Feedback\FeedbackRatingFilter;
+use App\Filters\Feedback\FeedbackCommentFilter;
+use App\Filters\Feedback\FeedbackCustomerFilter;
 use App\Interfaces\Front\FeedbackRepositoryInterface;
 
 class FeedbackRepository implements FeedbackRepositoryInterface
 {
     public function index()
     {
-        // TODO: Implement index() method.
+        $feedbacks = app(Pipeline::class)
+            ->send(Feedback::query())
+            ->through([
+                FeedbackCommentFilter::class,
+                FeedbackCustomerFilter::class,
+                FeedbackRatingFilter::class,
+            ])
+            ->thenReturn()
+            ->paginate(12);
+
+        return $feedbacks;
     }
 
-    public function create()
+    public function create(Array $data)
     {
-        // TODO: Implement create() method.
+        Feedback::create($data);
     }
 
-    public function update()
+    public function update(Feedback $feedback, Array $data)
     {
-        // TODO: Implement update() method.
+        $feedback->update($data);
     }
 
-    public function delete()
+    public function delete(Feedback $feedback)
     {
-        // TODO: Implement delete() method.
+        $feedback->delete();
     }
 
-    public function show()
+    public function show(Feedback $feedback)
     {
-        // TODO: Implement show() method.
+        return $feedback;
     }
 
 }

@@ -2,11 +2,15 @@
 
 namespace App\Interfaces\Front;
 
+use App\Models\UserSupplier;
+
 interface UserSupplierRepositoryInterface
 {
-    public function update();
+    public function index();
 
-    public function delete();
+    public function update($id, Array $data);
 
-    public function show();
+    // public function delete($id);
+
+    public function show($id);
 }

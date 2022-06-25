@@ -2,16 +2,19 @@
 
 namespace App\Interfaces\Front;
 
+use App\Models\Product;
+use Illuminate\Http\Request;
+
 interface ProductRepositoryInterface
 {
     public function index();
 
-    public function create();
+    public function create(Request $request);
 
-    public function update();
+    public function update(Product $product, Request $request);
 
-    public function delete();
+    public function delete(Product $product);
 
-    public function show();
+    public function show(Product $product);
 
 }

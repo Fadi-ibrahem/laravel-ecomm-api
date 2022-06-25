@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Interfaces\Front;
+namespace App\Interfaces;
 
 use Closure;
 

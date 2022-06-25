@@ -2,33 +2,44 @@
 
 namespace App\Repositories\Front;
 
+use App\Filters\Category\CategoryNameFilter;
+use App\Models\Category;
+use Illuminate\Pipeline\Pipeline;
 use App\Interfaces\Front\CategoryRepositoryInterface;
 
 class CategoryRepository implements CategoryRepositoryInterface
 {
     public function index()
     {
-        // TODO: Implement index() method.
+        $categories = app(Pipeline::class)
+            ->send(Category::query())
+            ->through([
+                CategoryNameFilter::class,
+            ])
+            ->thenReturn()
+            ->paginate(12);
+
+        return $categories;
     }
 
-    public function create()
+    public function create(Array $data)
     {
-        // TODO: Implement create() method.
+        Category::create($data);
     }
 
-    public function update()
+    public function update(Category $category, Array $data)
     {
-        // TODO: Implement update() method.
+        $category->update($data);
     }
 
-    public function delete()
+    public function delete(Category $category)
     {
-        // TODO: Implement delete() method.
+        $category->delete();
     }
 
-    public function show()
+    public function show(Category $category)
     {
-        // TODO: Implement show() method.
+        return $category;
     }
 
 }

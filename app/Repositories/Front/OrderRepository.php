@@ -2,33 +2,74 @@
 
 namespace App\Repositories\Front;
 
+use App\Filters\Order\OrderCancellationFilter;
+use App\Filters\Order\OrderCardNumberFilter;
+use App\Filters\Order\OrderCardTypeFilter;
+use App\Filters\Order\OrderCouponFilter;
+use App\Filters\Order\OrderCustomerFilter;
+use App\Filters\Order\OrderDateFilter;
+use App\Filters\Order\OrderDiscountFilter;
+use App\Filters\Order\OrderNumberFilter;
+use App\Filters\Order\OrderPriceFilter;
+use App\Filters\Order\OrderQTYFilter;
+use App\Filters\Order\OrderRequiredDateFilter;
+use App\Filters\Order\OrderShippedDateFilter;
+use App\Filters\Order\OrderShipperFilter;
+use App\Filters\Order\OrderStatusFilter;
+use App\Filters\Order\OrderTaxFilter;
+use App\Filters\Order\OrderTotalPriceFilter;
+use Illuminate\Pipeline\Pipeline;
 use App\Interfaces\Front\OrderRepositoryInterface;
+use App\Models\Order;
 
 class OrderRepository implements OrderRepositoryInterface
 {
     public function index()
     {
-        // TODO: Implement index() method.
+        $orders = app(Pipeline::class)
+            ->send(Order::query())
+            ->through([
+                OrderCancellationFilter::class,
+                OrderCardNumberFilter::class,
+                OrderCardTypeFilter::class,
+                OrderCouponFilter::class,
+                OrderCustomerFilter::class,
+                OrderDateFilter::class,
+                OrderDiscountFilter::class,
+                OrderNumberFilter::class,
+                OrderPriceFilter::class,
+                OrderQTYFilter::class,
+                OrderRequiredDateFilter::class,
+                OrderShippedDateFilter::class,
+                OrderShipperFilter::class,
+                OrderStatusFilter::class,
+                OrderTaxFilter::class,
+                OrderTotalPriceFilter::class,
+            ])
+            ->thenReturn()
+            ->paginate(12);
+
+        return $orders;
     }
 
-    public function create()
+    public function create(Array $data)
     {
-        // TODO: Implement create() method.
+        Order::create($data);
     }
 
-    public function update()
+    public function update(Order $order, Array $data)
     {
-        // TODO: Implement update() method.
+        $order->update($data);
     }
 
-    public function delete()
+    public function delete(Order $order)
     {
-        // TODO: Implement delete() method.
+        $order->delete();
     }
 
-    public function show()
+    public function show(Order $order)
     {
-        // TODO: Implement show() method.
+        return $order;
     }
 
 }

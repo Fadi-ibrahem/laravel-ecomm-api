@@ -2,33 +2,44 @@
 
 namespace App\Repositories\Front;
 
+use App\Filters\Size\SizeDegreeFilter;
+use Illuminate\Pipeline\Pipeline;
 use App\Interfaces\Front\SizeRepositoryInterface;
+use App\Models\Size;
 
 class SizeRepository implements SizeRepositoryInterface
 {
     public function index()
     {
-        // TODO: Implement index() method.
+        $sizes = app(Pipeline::class)
+            ->send(Size::query())
+            ->through([
+                SizeDegreeFilter::class,
+            ])
+            ->thenReturn()
+            ->paginate(12);
+
+        return $sizes;
     }
 
-    public function create()
+    public function create(Array $data)
     {
-        // TODO: Implement create() method.
+        Size::create($data);
     }
 
-    public function update()
+    public function update(Size $size, Array $data)
     {
-        // TODO: Implement update() method.
+        $size->update($data);
     }
 
-    public function delete()
+    public function delete(Size $size)
     {
-        // TODO: Implement delete() method.
+        $size->delete();
     }
 
-    public function show()
+    public function show(Size $size)
     {
-        // TODO: Implement show() method.
+        return $size;
     }
 
 }

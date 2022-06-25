@@ -26,13 +26,14 @@ class CreateProductsTable extends Migration
                                                                 ->onUpdate('cascade')
                                                                 ->onDelete('cascade');
 
-            $table->foreignId('admin_id')->constrained('users');
+            $table->foreignId('admin_id')->nullable()->constrained('users');
 
             $table->foreignId('category_id')->nullable()->constrained('categories');
 
             $table->foreignId('sub_category_id')->nullable()->constrained('categories');
 
-
+            
+            $table->softDeletes();
             $table->timestamps();
         });
     }

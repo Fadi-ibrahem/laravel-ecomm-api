@@ -2,23 +2,55 @@
 
 namespace App\Repositories\Front;
 
+use App\Models\UserCustomer;
+use Illuminate\Pipeline\Pipeline;
+use App\Filters\Customer\UserCustomerPhoneFilter;
+use App\Filters\Customer\UserCustomerStreetFilter;
+use App\Filters\Customer\UserCustomerZoneFilter;
 use App\Interfaces\Front\UserCustomerRepositoryInterface;
 
 class UserCustomerRepository implements UserCustomerRepositoryInterface
 {
-    public function update()
+    public function index()
     {
-        // TODO: Implement update() method.
+        $customers = app(Pipeline::class)
+            ->send(
+                UserCustomer::query()
+                ->join('users', 'users.id', '=', 'user_customers.user_id')
+                )
+            ->through([
+                UserCustomerPhoneFilter::class,
+                UserCustomerStreetFilter::class,
+                UserCustomerZoneFilter::class,
+            ])
+            ->thenReturn()
+            ->paginate(12);
+
+        return $customers;
     }
 
-    public function delete()
+    public function update($id, Array $data)
     {
-        // TODO: Implement delete() method.
+        UserCustomer::where('user_id', $id)
+                    ->update([
+                        'phone' => $data['phone'],
+                        'zone' => $data['zone'],
+                        'street' => $data['street'],
+                            ]);
     }
 
-    public function show()
+    public function show($id)
     {
-        // TODO: Implement show() method.
+        $supplier = UserCustomer::where('user_id', $id)->first();
+        return $supplier;
     }
+
+    /*
+    public function delete($id)
+    {
+        $supplier = UserSupplier::where('user_id', $id)->first();
+        $supplier->delete();
+    }
+    */
 
 }

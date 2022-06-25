@@ -26,6 +26,7 @@ class CreateFeedbacksTable extends Migration
                 ->onDelete('cascade');
 
             $table->string('comment');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

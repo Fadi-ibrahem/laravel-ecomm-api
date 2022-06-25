@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->foreignId('sub_category_id')->nullable()->constrained('categories')
                                                         ->onUpdate('cascade')
                                                         ->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

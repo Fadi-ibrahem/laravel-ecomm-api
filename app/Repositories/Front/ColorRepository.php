@@ -2,33 +2,44 @@
 
 namespace App\Repositories\Front;
 
-use App\Interfaces\Front\CouponRepositoryInterface;
+use App\Models\Color;
+use Illuminate\Pipeline\Pipeline;
+use App\Filters\Color\ColorValueFilter;
+use App\Interfaces\Front\ColorRepositoryInterface;
 
-class ColorRepository implements CouponRepositoryInterface
+class ColorRepository implements ColorRepositoryInterface
 {
     public function index()
     {
-        // TODO: Implement index() method.
+        $colors = app(Pipeline::class)
+            ->send(Color::query())
+            ->through([
+                ColorValueFilter::class,
+            ])
+            ->thenReturn()
+            ->paginate(12);
+
+        return $colors;
     }
 
-    public function create()
+    public function create(Array $data)
     {
-        // TODO: Implement create() method.
+        Color::create($data);
     }
 
-    public function update()
+    public function update(Color $color, Array $data)
     {
-        // TODO: Implement update() method.
+        $color->update($data);
     }
 
-    public function delete()
+    public function delete(Color $color)
     {
-        // TODO: Implement delete() method.
+        $color->delete();
     }
 
-    public function show()
+    public function show(Color $color)
     {
-        // TODO: Implement show() method.
+        return $color;
     }
 
 }

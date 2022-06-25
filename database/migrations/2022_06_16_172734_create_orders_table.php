@@ -35,6 +35,7 @@ class CreateOrdersTable extends Migration
                                                                     ->onUpdate('cascade');
 
             $table->enum('status', ['pending', 'shipping', 'accepted', 'rejected', 'cancelled']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

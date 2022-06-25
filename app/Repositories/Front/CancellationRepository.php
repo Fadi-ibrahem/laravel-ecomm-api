@@ -2,33 +2,47 @@
 
 namespace App\Repositories\Front;
 
+use App\Filters\Cancellation\CancellationDateFilter;
+use App\Filters\Cancellation\CancellationNotesFilter;
+use App\Filters\Cancellation\CancellationRefundAmountFilter;
+use Illuminate\Pipeline\Pipeline;
 use App\Interfaces\Front\CancellationRepositoryInterface;
+use App\Models\Cancellation;
 
 class CancellationRepository implements CancellationRepositoryInterface
 {
     public function index()
     {
-        // TODO: Implement index() method.
+        $cancellations = app(Pipeline::class)
+            ->send(Cancellation::query())
+            ->through([
+                CancellationDateFilter::class,
+                CancellationNotesFilter::class,
+                CancellationRefundAmountFilter::class,
+            ])
+            ->thenReturn()
+            ->paginate(12);
+
+        return $cancellations;
     }
 
-    public function create()
+    public function create(Array $data)
     {
-        // TODO: Implement create() method.
+        Cancellation::create($data);
     }
 
-    public function update()
+    public function update(Cancellation $cancellation, Array $data)
     {
-        // TODO: Implement update() method.
+        $cancellation->update($data);
     }
 
-    public function delete()
+    public function delete(Cancellation $cancellation)
     {
-        // TODO: Implement delete() method.
+        $cancellation->delete();
     }
 
-    public function show()
+    public function show(Cancellation $cancellation)
     {
-        // TODO: Implement show() method.
+        return $cancellation;
     }
-
 }

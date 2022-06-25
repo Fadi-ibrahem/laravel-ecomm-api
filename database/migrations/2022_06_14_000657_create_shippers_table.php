@@ -20,6 +20,7 @@ class CreateShippersTable extends Migration
             $table->dateTime('reg_date');
             $table->string('zone');
             $table->string('street');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

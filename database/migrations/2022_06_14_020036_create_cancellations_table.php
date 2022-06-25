@@ -18,6 +18,7 @@ class CreateCancellationsTable extends Migration
             $table->dateTime('date');
             $table->float('refund_amount')->nullable();
             $table->text('notes');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

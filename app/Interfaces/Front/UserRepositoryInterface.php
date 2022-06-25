@@ -2,11 +2,15 @@
 
 namespace App\Interfaces\Front;
 
+use App\Models\User;
+
 interface UserRepositoryInterface
 {
-    public function update();
+    public function index();
 
-    public function delete();
+    public function update(User $user, Array $data);
 
-    public function show();
+    public function delete(User $user);
+
+    public function show(User $user);
 }

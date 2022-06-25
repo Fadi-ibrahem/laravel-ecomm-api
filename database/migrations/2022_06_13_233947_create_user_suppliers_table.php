@@ -20,6 +20,7 @@ class CreateUserSuppliersTable extends Migration
                                                             ->onDelete('cascade');
 
             $table->string('address');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
