@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->boolean('status');
             $table->integer('qty');
-            $table->string('image');
+            $table->string('image')->default('default.png');
             $table->text('description');
             $table->float('price');
 

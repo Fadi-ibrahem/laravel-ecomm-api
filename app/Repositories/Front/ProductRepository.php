@@ -32,14 +32,18 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function create(Request $request)
     {
-        // Handle Image
-        $imgName = time().'_' . $request->image->getClientOriginalName();
-        $request->image->move(public_path('images/products/'), $imgName);
 
         // Create the new product
         $product = Product::create($request->all());
-        $product->image = $imgName;
-        $product->save();
+
+        if($request->has('image')) {
+            // Handle Image
+            $imgName = time().'_' . $request->image->getClientOriginalName();
+            $request->image->move(public_path('images/products/'), $imgName);
+            
+            $product->image = $imgName;
+            $product->save();
+        }
     }
 
     public function update(Product $product, Request $request)

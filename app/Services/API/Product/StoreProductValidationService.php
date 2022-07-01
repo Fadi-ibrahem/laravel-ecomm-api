@@ -9,15 +9,12 @@ class StoreProductValidationService
 {
     public static function isValid(Request $request) 
     {
-        // Set default image if not sent
-        $request->input('image', 'default.png');
-
         // Validate inputs
         $validator = Validator::make($request->all(), [
             'name'              => 'required|string',
             'status'            => 'boolean',
             'qty'               => 'required|integer',
-            'image'             => 'required|file|image|max:5120',   // maximum image size is 5mb = 5120kb
+            'image'             => 'file|image|max:5120',   // maximum image size is 5mb = 5120kb
             'description'       => 'string',
             'price'             => 'required|numeric',
             'category_id'       => 'numeric',
