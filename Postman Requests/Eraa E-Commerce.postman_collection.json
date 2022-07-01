@@ -11,6 +11,20 @@
 			"item": [
 				{
 					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonFile = pm.response.json()\r",
+									"var authToken = jsonFile.access_token\r",
+									"\r",
+									"pm.environment.set('authToken', authToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -77,6 +91,20 @@
 				},
 				{
 					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonFile = pm.response.json()\r",
+									"var authToken = jsonFile.access_token\r",
+									"\r",
+									"pm.environment.set('authToken', authToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -119,7 +147,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9yZWdpc3RlciIsImlhdCI6MTY1NjA1Njk1MywiZXhwIjoxNjU2MDYwNTUzLCJuYmYiOjE2NTYwNTY5NTMsImp0aSI6IjJla0VEakFKU3NqOThCdDEiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.3hI7Nd-qTmAVnYMIFRhFbVwYzioWMxo-kl-rL4PArGs",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -143,13 +171,27 @@
 				},
 				{
 					"name": "Refresh Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonFile = pm.response.json()\r",
+									"var authToken = jsonFile.access_token\r",
+									"\r",
+									"pm.environment.set('authToken', authToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9yZWZyZXNoIiwiaWF0IjoxNjU2MDM0OTQyLCJleHAiOjE2NTYwMzg1NjgsIm5iZiI6MTY1NjAzNDk2OCwianRpIjoiaEd5d2tKNVBSYWZUTXhaZyIsInN1YiI6MjQsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.BQQgrfInZDSX5qzfnZWHpuAx3Jvh6-yf6eWoHMPNHV0",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -180,7 +222,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9yZWZyZXNoIiwiaWF0IjoxNjU2MDM0OTQyLCJleHAiOjE2NTYwMzg1NzgsIm5iZiI6MTY1NjAzNDk3OCwianRpIjoia3kwVnYxMkRac05sVXRtViIsInN1YiI6MjQsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.t7OhIy_BdO2g7-oX4kCJWOtBNBA-RgsgXXC0q1MpFSw",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -216,7 +258,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5NDk5NiwiZXhwIjoxNjU2MDk4NTk2LCJuYmYiOjE2NTYwOTQ5OTYsImp0aSI6Ijg3YktNVWZvUFNEQkw4RloiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ocDfUbHKJ0bIt3XhBQxYCVW0GTgdr9s8j2nLVbCEjVg",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -240,13 +282,24 @@
 				},
 				{
 					"name": "Store Product",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -304,7 +357,7 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/Fadi/Desktop/pics/test4.jpg"
+									"src": "/C:/Users/Fadi/Desktop/pics/test.jpg"
 								}
 							]
 						},
@@ -331,7 +384,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -362,7 +415,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5NDk5NiwiZXhwIjoxNjU2MDk4NTk2LCJuYmYiOjE2NTYwOTQ5OTYsImp0aSI6Ijg3YktNVWZvUFNEQkw4RloiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ocDfUbHKJ0bIt3XhBQxYCVW0GTgdr9s8j2nLVbCEjVg",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -453,7 +506,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -479,10 +532,45 @@
 				{
 					"name": "Insert Colors",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "colors_id[0]",
+									"value": "11",
+									"type": "text"
+								},
+								{
+									"key": "colors_id[1]",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "colors_id[2]",
+									"value": "13",
+									"type": "text"
+								},
+								{
+									"key": "product_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
-							"raw": "http://localhost:8000/api/product/colors?colors_id[0]=11&colors_id[1]=12&colors_id[2]=13&product_id=1",
+							"raw": "http://localhost:8000/api/product/colors",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -492,24 +580,6 @@
 								"api",
 								"product",
 								"colors"
-							],
-							"query": [
-								{
-									"key": "colors_id[0]",
-									"value": "11"
-								},
-								{
-									"key": "colors_id[1]",
-									"value": "12"
-								},
-								{
-									"key": "colors_id[2]",
-									"value": "13"
-								},
-								{
-									"key": "product_id",
-									"value": "1"
-								}
 							]
 						}
 					},
@@ -518,10 +588,45 @@
 				{
 					"name": "Insert Sizes",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "sizes_id[0]",
+									"value": "11",
+									"type": "text"
+								},
+								{
+									"key": "sizes_id[1]",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "sizes_id[2]",
+									"value": "13",
+									"type": "text"
+								},
+								{
+									"key": "product_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
-							"raw": "http://localhost:8000/api/product/sizes?sizes_id[0]=11&sizes_id[1]=12&sizes_id[2]=13&product_id=1",
+							"raw": "http://localhost:8000/api/product/sizes",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -531,24 +636,6 @@
 								"api",
 								"product",
 								"sizes"
-							],
-							"query": [
-								{
-									"key": "sizes_id[0]",
-									"value": "11"
-								},
-								{
-									"key": "sizes_id[1]",
-									"value": "12"
-								},
-								{
-									"key": "sizes_id[2]",
-									"value": "13"
-								},
-								{
-									"key": "product_id",
-									"value": "1"
-								}
 							]
 						}
 					},
@@ -557,10 +644,76 @@
 				{
 					"name": "Insert Orders",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "product_id",
+									"value": "1",
+									"description": "The first key of orders_id array must be the \"product_id\" which you want to specify its intermediate pivot table columns. NOTE: in postman don't set the key as a string type its name directly without any qoutes.",
+									"type": "text"
+								},
+								{
+									"key": "orders_id[11][qty]",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "orders_id[12][qty]",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "orders_id[13][qty]",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "orders_id[11][current_product_price]",
+									"value": "30",
+									"type": "text"
+								},
+								{
+									"key": "orders_id[12][current_product_price]",
+									"value": "40",
+									"type": "text"
+								},
+								{
+									"key": "orders_id[13][current_product_price]",
+									"value": "50",
+									"type": "text"
+								},
+								{
+									"key": "orders_id[11][current_total_product_price]",
+									"value": "300",
+									"type": "text"
+								},
+								{
+									"key": "orders_id[12][current_total_product_price]",
+									"value": "400",
+									"type": "text"
+								},
+								{
+									"key": "orders_id[13][current_total_product_price]",
+									"value": "500",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
-							"raw": "http://localhost:8000/api/product/orders?product_id=1&orders_id[11][qty]=3&orders_id[12][qty]=4&orders_id[13][qty]=5&orders_id[11][current_product_price]=30&orders_id[12][current_product_price]=40&orders_id[13][current_product_price]=50&orders_id[11][current_total_product_price]=300&orders_id[12][current_total_product_price]=400&orders_id[13][current_total_product_price]=500",
+							"raw": "http://localhost:8000/api/product/orders",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -570,49 +723,6 @@
 								"api",
 								"product",
 								"orders"
-							],
-							"query": [
-								{
-									"key": "product_id",
-									"value": "1",
-									"description": "The first key of orders_id array must be the \"order_id\" which you want to specify its intermediate pivot table columns. NOTE: in postman don't set the key as a string type its name directly without any qoutes."
-								},
-								{
-									"key": "orders_id[11][qty]",
-									"value": "3"
-								},
-								{
-									"key": "orders_id[12][qty]",
-									"value": "4"
-								},
-								{
-									"key": "orders_id[13][qty]",
-									"value": "5"
-								},
-								{
-									"key": "orders_id[11][current_product_price]",
-									"value": "30"
-								},
-								{
-									"key": "orders_id[12][current_product_price]",
-									"value": "40"
-								},
-								{
-									"key": "orders_id[13][current_product_price]",
-									"value": "50"
-								},
-								{
-									"key": "orders_id[11][current_total_product_price]",
-									"value": "300"
-								},
-								{
-									"key": "orders_id[12][current_total_product_price]",
-									"value": "400"
-								},
-								{
-									"key": "orders_id[13][current_total_product_price]",
-									"value": "500"
-								}
 							]
 						},
 						"description": "StartFragment\n\nThe first key of orders_id array must be the \"order_id\" which you want to specify its intermediate pivot table columns. NOTE: in postman don't set the key as a string type its name directly without any qoutes.\n\nEndFragmen"
@@ -655,7 +765,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5NDk5NiwiZXhwIjoxNjU2MDk4NTk2LCJuYmYiOjE2NTYwOTQ5OTYsImp0aSI6Ijg3YktNVWZvUFNEQkw4RloiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ocDfUbHKJ0bIt3XhBQxYCVW0GTgdr9s8j2nLVbCEjVg",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -685,15 +795,40 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
 						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "rating",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "product_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "customer_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "comment",
+									"value": "lfskdfjlkdsjf",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
-							"raw": "http://localhost:8000/api/feedbacks?rating=3&product_id=1&customer_id=1&comment=lfskdfjlkdsjf",
+							"raw": "http://localhost:8000/api/feedbacks",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -702,24 +837,6 @@
 							"path": [
 								"api",
 								"feedbacks"
-							],
-							"query": [
-								{
-									"key": "rating",
-									"value": "3"
-								},
-								{
-									"key": "product_id",
-									"value": "1"
-								},
-								{
-									"key": "customer_id",
-									"value": "1"
-								},
-								{
-									"key": "comment",
-									"value": "lfskdfjlkdsjf"
-								}
 							]
 						}
 					},
@@ -733,7 +850,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -764,7 +881,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5NDk5NiwiZXhwIjoxNjU2MDk4NTk2LCJuYmYiOjE2NTYwOTQ5OTYsImp0aSI6Ijg3YktNVWZvUFNEQkw4RloiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ocDfUbHKJ0bIt3XhBQxYCVW0GTgdr9s8j2nLVbCEjVg",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -825,7 +942,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -861,7 +978,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5NDk5NiwiZXhwIjoxNjU2MDk4NTk2LCJuYmYiOjE2NTYwOTQ5OTYsImp0aSI6Ijg3YktNVWZvUFNEQkw4RloiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ocDfUbHKJ0bIt3XhBQxYCVW0GTgdr9s8j2nLVbCEjVg",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -891,15 +1008,35 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
 						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "API Category",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "lksdjflkdsjflkds",
+									"type": "text"
+								},
+								{
+									"key": "sub_category_id",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
-							"raw": "http://localhost:8000/api/categories?name=API Category&description=lksdjflkdsjflkds&sub_category_id",
+							"raw": "http://localhost:8000/api/categories",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -908,20 +1045,6 @@
 							"path": [
 								"api",
 								"categories"
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "API Category"
-								},
-								{
-									"key": "description",
-									"value": "lksdjflkdsjflkds"
-								},
-								{
-									"key": "sub_category_id",
-									"value": null
-								}
 							]
 						}
 					},
@@ -935,7 +1058,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -966,7 +1089,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5NDk5NiwiZXhwIjoxNjU2MDk4NTk2LCJuYmYiOjE2NTYwOTQ5OTYsImp0aSI6Ijg3YktNVWZvUFNEQkw4RloiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ocDfUbHKJ0bIt3XhBQxYCVW0GTgdr9s8j2nLVbCEjVg",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -1022,7 +1145,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -1058,7 +1181,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5NDk5NiwiZXhwIjoxNjU2MDk4NTk2LCJuYmYiOjE2NTYwOTQ5OTYsImp0aSI6Ijg3YktNVWZvUFNEQkw4RloiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ocDfUbHKJ0bIt3XhBQxYCVW0GTgdr9s8j2nLVbCEjVg",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -1088,7 +1211,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -1099,59 +1222,19 @@
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "name",
-									"value": "From API",
-									"type": "text"
-								},
-								{
-									"key": "status",
-									"value": "0",
-									"type": "text"
-								},
-								{
-									"key": "qty",
-									"value": "3",
+									"key": "color_value",
+									"value": "lskdfjlkdsf",
 									"type": "text"
 								},
 								{
 									"key": "image",
 									"type": "file",
 									"src": "/C:/Users/Fadi/Desktop/pics/test.jpg"
-								},
-								{
-									"key": "description",
-									"value": "slkdfjlkdsjflk",
-									"type": "text"
-								},
-								{
-									"key": "price",
-									"value": "200",
-									"type": "text"
-								},
-								{
-									"key": "admin_id",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "supplier_id",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "category_id",
-									"value": "5",
-									"type": "text"
-								},
-								{
-									"key": "sub_category_id",
-									"value": "",
-									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/colors?color_value=lskdfjlkdsf",
+							"raw": "http://localhost:8000/api/colors",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1160,12 +1243,6 @@
 							"path": [
 								"api",
 								"colors"
-							],
-							"query": [
-								{
-									"key": "color_value",
-									"value": "lskdfjlkdsf"
-								}
 							]
 						}
 					},
@@ -1179,7 +1256,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -1210,7 +1287,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5NDk5NiwiZXhwIjoxNjU2MDk4NTk2LCJuYmYiOjE2NTYwOTQ5OTYsImp0aSI6Ijg3YktNVWZvUFNEQkw4RloiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ocDfUbHKJ0bIt3XhBQxYCVW0GTgdr9s8j2nLVbCEjVg",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -1256,7 +1333,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -1282,10 +1359,45 @@
 				{
 					"name": "Insert Products",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "products_id[0]",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "products_id[1]",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "products_id[2]",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "color_id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
-							"raw": "http://localhost:8000/api/color/products?products_id[0]=3&products_id[1]=4&products_id[2]=5&color_id=2",
+							"raw": "http://localhost:8000/api/color/products",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1295,24 +1407,6 @@
 								"api",
 								"color",
 								"products"
-							],
-							"query": [
-								{
-									"key": "products_id[0]",
-									"value": "3"
-								},
-								{
-									"key": "products_id[1]",
-									"value": "4"
-								},
-								{
-									"key": "products_id[2]",
-									"value": "5"
-								},
-								{
-									"key": "color_id",
-									"value": "2"
-								}
 							]
 						}
 					},
@@ -1326,6 +1420,16 @@
 				{
 					"name": "All Sizes",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -1351,7 +1455,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -1362,59 +1466,19 @@
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "name",
-									"value": "From API",
-									"type": "text"
-								},
-								{
-									"key": "status",
-									"value": "0",
-									"type": "text"
-								},
-								{
-									"key": "qty",
-									"value": "3",
+									"key": "size_degree",
+									"value": "small",
 									"type": "text"
 								},
 								{
 									"key": "image",
 									"type": "file",
 									"src": "/C:/Users/Fadi/Desktop/pics/test.jpg"
-								},
-								{
-									"key": "description",
-									"value": "slkdfjlkdsjflk",
-									"type": "text"
-								},
-								{
-									"key": "price",
-									"value": "200",
-									"type": "text"
-								},
-								{
-									"key": "admin_id",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "supplier_id",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "category_id",
-									"value": "5",
-									"type": "text"
-								},
-								{
-									"key": "sub_category_id",
-									"value": "",
-									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/sizes?size_degree=small",
+							"raw": "http://localhost:8000/api/sizes",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1423,12 +1487,6 @@
 							"path": [
 								"api",
 								"sizes"
-							],
-							"query": [
-								{
-									"key": "size_degree",
-									"value": "small"
-								}
 							]
 						}
 					},
@@ -1442,7 +1500,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -1473,7 +1531,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5NDk5NiwiZXhwIjoxNjU2MDk4NTk2LCJuYmYiOjE2NTYwOTQ5OTYsImp0aSI6Ijg3YktNVWZvUFNEQkw4RloiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ocDfUbHKJ0bIt3XhBQxYCVW0GTgdr9s8j2nLVbCEjVg",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -1519,7 +1577,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -1545,10 +1603,45 @@
 				{
 					"name": "Insert Products",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "products_id[0]",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "products_id[1]",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "products_id[2]",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "size_id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
-							"raw": "http://localhost:8000/api/size/products?products_id[0]=3&products_id[1]=4&products_id[2]=5&size_id=2",
+							"raw": "http://localhost:8000/api/size/products",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1558,24 +1651,6 @@
 								"api",
 								"size",
 								"products"
-							],
-							"query": [
-								{
-									"key": "products_id[0]",
-									"value": "3"
-								},
-								{
-									"key": "products_id[1]",
-									"value": "4"
-								},
-								{
-									"key": "products_id[2]",
-									"value": "5"
-								},
-								{
-									"key": "size_id",
-									"value": "2"
-								}
 							]
 						}
 					},
@@ -1594,7 +1669,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5NDk5NiwiZXhwIjoxNjU2MDk4NTk2LCJuYmYiOjE2NTYwOTQ5OTYsImp0aSI6Ijg3YktNVWZvUFNEQkw4RloiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ocDfUbHKJ0bIt3XhBQxYCVW0GTgdr9s8j2nLVbCEjVg",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -1624,7 +1699,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -1635,59 +1710,94 @@
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "name",
-									"value": "From API",
+									"key": "order_number",
+									"value": "5467564",
 									"type": "text"
 								},
 								{
-									"key": "status",
-									"value": "0",
+									"key": "order_date",
+									"value": "1979-07-04 22:39:55",
+									"type": "text"
+								},
+								{
+									"key": "shipped_date",
+									"value": "1979-07-04 22:39:55",
+									"type": "text"
+								},
+								{
+									"key": "required_date",
+									"value": "1979-07-04 22:39:55",
+									"type": "text"
+								},
+								{
+									"key": "customer_id",
+									"value": "13",
+									"type": "text"
+								},
+								{
+									"key": "shipper_id",
+									"value": "8",
 									"type": "text"
 								},
 								{
 									"key": "qty",
-									"value": "3",
+									"value": "9",
+									"type": "text"
+								},
+								{
+									"key": "discount",
+									"value": "20.80",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "546",
+									"type": "text"
+								},
+								{
+									"key": "card_type",
+									"value": "Visa",
+									"type": "text"
+								},
+								{
+									"key": "card_number",
+									"value": "378870952982064",
+									"type": "text"
+								},
+								{
+									"key": "tax",
+									"value": "11.00",
+									"type": "text"
+								},
+								{
+									"key": "total_price",
+									"value": "88.00",
+									"type": "text"
+								},
+								{
+									"key": "coupon_id",
+									"value": "8",
+									"type": "text"
+								},
+								{
+									"key": "cancellation_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "pending",
 									"type": "text"
 								},
 								{
 									"key": "image",
 									"type": "file",
 									"src": "/C:/Users/Fadi/Desktop/pics/test.jpg"
-								},
-								{
-									"key": "description",
-									"value": "slkdfjlkdsjflk",
-									"type": "text"
-								},
-								{
-									"key": "price",
-									"value": "200",
-									"type": "text"
-								},
-								{
-									"key": "admin_id",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "supplier_id",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "category_id",
-									"value": "5",
-									"type": "text"
-								},
-								{
-									"key": "sub_category_id",
-									"value": "",
-									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/orders?order_number=5467564&order_date=1979-07-04 22:39:55&shipped_date=1979-07-04 22:39:55&required_date=1979-07-04 22:39:55&customer_id=13&shipper_id=8&qty=9&discount=20.80&price=546&card_type=Visa&card_number=378870952982064&tax=11.00&total_price=88.00&coupon_id=8&cancellation_id&status=pending",
+							"raw": "http://localhost:8000/api/orders",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1696,72 +1806,6 @@
 							"path": [
 								"api",
 								"orders"
-							],
-							"query": [
-								{
-									"key": "order_number",
-									"value": "5467564"
-								},
-								{
-									"key": "order_date",
-									"value": "1979-07-04 22:39:55"
-								},
-								{
-									"key": "shipped_date",
-									"value": "1979-07-04 22:39:55"
-								},
-								{
-									"key": "required_date",
-									"value": "1979-07-04 22:39:55"
-								},
-								{
-									"key": "customer_id",
-									"value": "13"
-								},
-								{
-									"key": "shipper_id",
-									"value": "8"
-								},
-								{
-									"key": "qty",
-									"value": "9"
-								},
-								{
-									"key": "discount",
-									"value": "20.80"
-								},
-								{
-									"key": "price",
-									"value": "546"
-								},
-								{
-									"key": "card_type",
-									"value": "Visa"
-								},
-								{
-									"key": "card_number",
-									"value": "378870952982064"
-								},
-								{
-									"key": "tax",
-									"value": "11.00"
-								},
-								{
-									"key": "total_price",
-									"value": "88.00"
-								},
-								{
-									"key": "coupon_id",
-									"value": "8"
-								},
-								{
-									"key": "cancellation_id",
-									"value": null
-								},
-								{
-									"key": "status",
-									"value": "pending"
-								}
 							]
 						}
 					},
@@ -1775,7 +1819,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -1806,7 +1850,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5NDk5NiwiZXhwIjoxNjU2MDk4NTk2LCJuYmYiOjE2NTYwOTQ5OTYsImp0aSI6Ijg3YktNVWZvUFNEQkw4RloiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ocDfUbHKJ0bIt3XhBQxYCVW0GTgdr9s8j2nLVbCEjVg",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -1927,7 +1971,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -1953,10 +1997,76 @@
 				{
 					"name": "Insert Products",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "order_id",
+									"value": "1",
+									"description": "The first key of products_id array must be the \"order_id\" which you want to specify its intermediate pivot table columns. NOTE: in postman don't set the key as a string type its name directly without any qoutes.",
+									"type": "text"
+								},
+								{
+									"key": "products_id[2][qty]",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "products_id[3][qty]",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "products_id[4][qty]",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "products_id[2][current_product_price]",
+									"value": "30",
+									"type": "text"
+								},
+								{
+									"key": "products_id[3][current_product_price]",
+									"value": "40",
+									"type": "text"
+								},
+								{
+									"key": "products_id[4][current_product_price]",
+									"value": "50",
+									"type": "text"
+								},
+								{
+									"key": "products_id[2][current_total_product_price]",
+									"value": "300",
+									"type": "text"
+								},
+								{
+									"key": "products_id[3][current_total_product_price]",
+									"value": "400",
+									"type": "text"
+								},
+								{
+									"key": "products_id[4][current_total_product_price]",
+									"value": "500s",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
-							"raw": "http://localhost:8000/api/order/products?order_id=1&products_id[2][qty]=3&products_id[3][qty]=4&products_id[4][qty]=5&products_id[2][current_product_price]=30&products_id[3][current_product_price]=40&products_id[4][current_product_price]=50&products_id[2][current_total_product_price]=300&products_id[3][current_total_product_price]=400&products_id[4][current_total_product_price]=500",
+							"raw": "http://localhost:8000/api/order/products",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1966,49 +2076,6 @@
 								"api",
 								"order",
 								"products"
-							],
-							"query": [
-								{
-									"key": "order_id",
-									"value": "1",
-									"description": "The first key of products_id array must be the \"order_id\" which you want to specify its intermediate pivot table columns. NOTE: in postman don't set the key as a string type its name directly without any qoutes."
-								},
-								{
-									"key": "products_id[2][qty]",
-									"value": "3"
-								},
-								{
-									"key": "products_id[3][qty]",
-									"value": "4"
-								},
-								{
-									"key": "products_id[4][qty]",
-									"value": "5"
-								},
-								{
-									"key": "products_id[2][current_product_price]",
-									"value": "30"
-								},
-								{
-									"key": "products_id[3][current_product_price]",
-									"value": "40"
-								},
-								{
-									"key": "products_id[4][current_product_price]",
-									"value": "50"
-								},
-								{
-									"key": "products_id[2][current_total_product_price]",
-									"value": "300"
-								},
-								{
-									"key": "products_id[3][current_total_product_price]",
-									"value": "400"
-								},
-								{
-									"key": "products_id[4][current_total_product_price]",
-									"value": "500"
-								}
 							]
 						},
 						"description": "StartFragment\n\nThe first key of orders_id array must be the \"order_id\" which you want to specify its intermediate pivot table columns. NOTE: in postman don't set the key as a string type its name directly without any qoutes.\n\nEndFragmen"
@@ -2022,19 +2089,26 @@
 			"item": [
 				{
 					"name": "All Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5NDk5NiwiZXhwIjoxNjU2MDk4NTk2LCJuYmYiOjE2NTYwOTQ5OTYsImp0aSI6Ijg3YktNVWZvUFNEQkw4RloiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ocDfUbHKJ0bIt3XhBQxYCVW0GTgdr9s8j2nLVbCEjVg",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
 						},
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
 						"url": {
 							"raw": "http://localhost:8000/api/users?type=customer",
 							"protocol": "http",
@@ -2064,7 +2138,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9yZWdpc3RlciIsImlhdCI6MTY1NjE1MzE0OSwiZXhwIjoxNjU2MTU2NzQ5LCJuYmYiOjE2NTYxNTMxNDksImp0aSI6Ill6ZEdibUFiY2U4STZQWkwiLCJzdWIiOjE2LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.m0mCS4_Zn3M8VQfSz1NokLEch2H9MQS194UwdIzXXlw",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -2095,7 +2169,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9yZWdpc3RlciIsImlhdCI6MTY1NjE1MzE0OSwiZXhwIjoxNjU2MTU2NzQ5LCJuYmYiOjE2NTYxNTMxNDksImp0aSI6Ill6ZEdibUFiY2U4STZQWkwiLCJzdWIiOjE2LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.m0mCS4_Zn3M8VQfSz1NokLEch2H9MQS194UwdIzXXlw",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -2161,7 +2235,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -2197,7 +2271,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5NDk5NiwiZXhwIjoxNjU2MDk4NTk2LCJuYmYiOjE2NTYwOTQ5OTYsImp0aSI6Ijg3YktNVWZvUFNEQkw4RloiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ocDfUbHKJ0bIt3XhBQxYCVW0GTgdr9s8j2nLVbCEjVg",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -2227,7 +2301,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9yZWdpc3RlciIsImlhdCI6MTY1NjE1NzI4OSwiZXhwIjoxNjU2MTYwODg5LCJuYmYiOjE2NTYxNTcyODksImp0aSI6IkFwbjV3eEhMWHpad0VwNnkiLCJzdWIiOjE3LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.2Asgjabndvb5D5R8YmDrEdFIQHIUMilZjWF9tcR8vuk",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -2258,7 +2332,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9yZWdpc3RlciIsImlhdCI6MTY1NjE1NzI4OSwiZXhwIjoxNjU2MTYwODg5LCJuYmYiOjE2NTYxNTcyODksImp0aSI6IkFwbjV3eEhMWHpad0VwNnkiLCJzdWIiOjE3LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.2Asgjabndvb5D5R8YmDrEdFIQHIUMilZjWF9tcR8vuk",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -2299,6 +2373,16 @@
 				{
 					"name": "All Supplier Phones",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -2331,7 +2415,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5NDk5NiwiZXhwIjoxNjU2MDk4NTk2LCJuYmYiOjE2NTYwOTQ5OTYsImp0aSI6Ijg3YktNVWZvUFNEQkw4RloiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ocDfUbHKJ0bIt3XhBQxYCVW0GTgdr9s8j2nLVbCEjVg",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -2361,7 +2445,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9yZWdpc3RlciIsImlhdCI6MTY1NjE1NzI4OSwiZXhwIjoxNjU2MTYwODg5LCJuYmYiOjE2NTYxNTcyODksImp0aSI6IkFwbjV3eEhMWHpad0VwNnkiLCJzdWIiOjE3LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.2Asgjabndvb5D5R8YmDrEdFIQHIUMilZjWF9tcR8vuk",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -2392,7 +2476,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9yZWdpc3RlciIsImlhdCI6MTY1NjE1NzI4OSwiZXhwIjoxNjU2MTYwODg5LCJuYmYiOjE2NTYxNTcyODksImp0aSI6IkFwbjV3eEhMWHpad0VwNnkiLCJzdWIiOjE3LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.2Asgjabndvb5D5R8YmDrEdFIQHIUMilZjWF9tcR8vuk",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -2453,7 +2537,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5NDk5NiwiZXhwIjoxNjU2MDk4NTk2LCJuYmYiOjE2NTYwOTQ5OTYsImp0aSI6Ijg3YktNVWZvUFNEQkw4RloiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ocDfUbHKJ0bIt3XhBQxYCVW0GTgdr9s8j2nLVbCEjVg",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -2483,7 +2567,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -2543,7 +2627,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -2574,7 +2658,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5NDk5NiwiZXhwIjoxNjU2MDk4NTk2LCJuYmYiOjE2NTYwOTQ5OTYsImp0aSI6Ijg3YktNVWZvUFNEQkw4RloiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ocDfUbHKJ0bIt3XhBQxYCVW0GTgdr9s8j2nLVbCEjVg",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -2640,7 +2724,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -2666,6 +2750,16 @@
 				{
 					"name": "All Shipper Phones",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -2698,7 +2792,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5NDk5NiwiZXhwIjoxNjU2MDk4NTk2LCJuYmYiOjE2NTYwOTQ5OTYsImp0aSI6Ijg3YktNVWZvUFNEQkw4RloiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ocDfUbHKJ0bIt3XhBQxYCVW0GTgdr9s8j2nLVbCEjVg",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -2728,7 +2822,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -2778,7 +2872,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -2809,7 +2903,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5NDk5NiwiZXhwIjoxNjU2MDk4NTk2LCJuYmYiOjE2NTYwOTQ5OTYsImp0aSI6Ijg3YktNVWZvUFNEQkw4RloiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ocDfUbHKJ0bIt3XhBQxYCVW0GTgdr9s8j2nLVbCEjVg",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -2865,7 +2959,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -2901,7 +2995,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5NDk5NiwiZXhwIjoxNjU2MDk4NTk2LCJuYmYiOjE2NTYwOTQ5OTYsImp0aSI6Ijg3YktNVWZvUFNEQkw4RloiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ocDfUbHKJ0bIt3XhBQxYCVW0GTgdr9s8j2nLVbCEjVg",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -2931,7 +3025,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -2981,7 +3075,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -3012,7 +3106,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5NDk5NiwiZXhwIjoxNjU2MDk4NTk2LCJuYmYiOjE2NTYwOTQ5OTYsImp0aSI6Ijg3YktNVWZvUFNEQkw4RloiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ocDfUbHKJ0bIt3XhBQxYCVW0GTgdr9s8j2nLVbCEjVg",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -3068,7 +3162,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -3104,7 +3198,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5NDk5NiwiZXhwIjoxNjU2MDk4NTk2LCJuYmYiOjE2NTYwOTQ5OTYsImp0aSI6Ijg3YktNVWZvUFNEQkw4RloiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ocDfUbHKJ0bIt3XhBQxYCVW0GTgdr9s8j2nLVbCEjVg",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -3134,7 +3228,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -3165,7 +3259,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5NDk5NiwiZXhwIjoxNjU2MDk4NTk2LCJuYmYiOjE2NTYwOTQ5OTYsImp0aSI6Ijg3YktNVWZvUFNEQkw4RloiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ocDfUbHKJ0bIt3XhBQxYCVW0GTgdr9s8j2nLVbCEjVg",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -3211,7 +3305,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6MTY1NjA5MTM0OSwiZXhwIjoxNjU2MDk0OTQ5LCJuYmYiOjE2NTYwOTEzNDksImp0aSI6IkQyeW1XT2tQRWY1ODVlYTQiLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffmhyxG5A1gqne3fQroZSgPEwpnHV8Di5pcFCy1a5P4",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -3237,10 +3331,40 @@
 				{
 					"name": "Add Phones To A Shipper",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "phones[0]",
+									"value": "11111111",
+									"type": "text"
+								},
+								{
+									"key": "phones[2]",
+									"value": "222222",
+									"type": "text"
+								},
+								{
+									"key": "phones[3]",
+									"value": "333333",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
-							"raw": "http://localhost:8000/api/phone/shipper/4?phones[0]=11111111&phones[2]=222222&phones[3]=333333",
+							"raw": "http://localhost:8000/api/phone/shipper/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3251,20 +3375,6 @@
 								"phone",
 								"shipper",
 								"4"
-							],
-							"query": [
-								{
-									"key": "phones[0]",
-									"value": "11111111"
-								},
-								{
-									"key": "phones[2]",
-									"value": "222222"
-								},
-								{
-									"key": "phones[3]",
-									"value": "333333"
-								}
 							]
 						}
 					},
@@ -3273,10 +3383,40 @@
 				{
 					"name": "Add Phones To A Supplier",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "phones[0]",
+									"value": "11111111",
+									"type": "text"
+								},
+								{
+									"key": "phones[2]",
+									"value": "222222",
+									"type": "text"
+								},
+								{
+									"key": "phones[3]",
+									"value": "333333",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
-							"raw": "http://localhost:8000/api/phone/supplier/6?phones[0]=11111111&phones[2]=222222&phones[3]=333333",
+							"raw": "http://localhost:8000/api/phone/supplier/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3287,20 +3427,6 @@
 								"phone",
 								"supplier",
 								"6"
-							],
-							"query": [
-								{
-									"key": "phones[0]",
-									"value": "11111111"
-								},
-								{
-									"key": "phones[2]",
-									"value": "222222"
-								},
-								{
-									"key": "phones[3]",
-									"value": "333333"
-								}
 							]
 						}
 					},
